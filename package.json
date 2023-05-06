@@ -1,0 +1,32 @@
+{
+  "name": "@kitto/vite-plugin-deepkit",
+  "version": "0.0.1",
+  "description": "",
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": "./dist/mod.mjs",
+      "types": "./dist/mod.d.ts",
+      "require": "./dist/mod.cjs"
+    }
+  },
+  "scripts": {
+    "build": "tsc",
+    "test": "npm run build && cd tests && vite build",
+    "bundle": "tsup",
+    "dev": "tsc -w"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@deepkit/core": "^1.0.1-alpha.93",
+    "@marcj/ts-clone-node": "^2.0.0",
+    "@rollup/pluginutils": "^5.0.2",
+    "@types/node": "^20.1.0",
+    "@typescript/vfs": "^1.4.0",
+    "lz-string": "^1.5.0",
+    "strip-json-comments": "^5.0.0",
+    "tsup": "^6.7.0",
+    "typescript": "^5.0.4",
+    "vite": "^4.3.5"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "module": "esnext",
+    "esModuleInterop": true,
+    "outDir": "./dist"
+  },
+  "reflection": true,
+  "exclude": ["./dist"]
+}
