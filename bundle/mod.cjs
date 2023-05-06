@@ -30,7 +30,9 @@ var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: tru
 // mod.mts
 var mod_exports = {};
 __export(mod_exports, {
-  deepkitType: () => deepkitType
+  declarationTransformer: () => declarationTransformer,
+  deepkitType: () => deepkitType,
+  transformer: () => transformer
 });
 module.exports = __toCommonJS(mod_exports);
 var import_pluginutils = require("@rollup/pluginutils");
@@ -2601,6 +2603,10 @@ var declarationTransformer = function deepkitDeclarationTransformer(context) {
 // mod.mts
 function deepkitType(options = {}) {
   const filter = (0, import_pluginutils.createFilter)(options.include ?? "**/*.ts", options.exclude ?? "node_modules/**");
+  const transformers = options.transformers || {
+    before: [transformer],
+    after: [declarationTransformer]
+  };
   return {
     name: "deepkit-type",
     enforce: "pre",
@@ -2613,12 +2619,8 @@ function deepkitType(options = {}) {
           "module": import_typescript3.default.ModuleKind.ESNext
         },
         fileName,
-        transformers: {
-          //@ts-ignore
-          before: [transformer],
-          //@ts-ignore
-          after: [declarationTransformer]
-        }
+        //@ts-ignore
+        transformers
       });
       return {
         code: transformed.outputText,
@@ -2629,6 +2631,8 @@ function deepkitType(options = {}) {
 }
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
-  deepkitType
+  declarationTransformer,
+  deepkitType,
+  transformer
 });
 //# sourceMappingURL=mod.cjs.map

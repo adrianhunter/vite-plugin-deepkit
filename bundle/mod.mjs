@@ -2567,6 +2567,10 @@ var declarationTransformer = function deepkitDeclarationTransformer(context) {
 // mod.mts
 function deepkitType(options = {}) {
   const filter = createFilter(options.include ?? "**/*.ts", options.exclude ?? "node_modules/**");
+  const transformers = options.transformers || {
+    before: [transformer],
+    after: [declarationTransformer]
+  };
   return {
     name: "deepkit-type",
     enforce: "pre",
@@ -2579,12 +2583,8 @@ function deepkitType(options = {}) {
           "module": ts4.ModuleKind.ESNext
         },
         fileName,
-        transformers: {
-          //@ts-ignore
-          before: [transformer],
-          //@ts-ignore
-          after: [declarationTransformer]
-        }
+        //@ts-ignore
+        transformers
       });
       return {
         code: transformed.outputText,
@@ -2594,6 +2594,8 @@ function deepkitType(options = {}) {
   };
 }
 export {
-  deepkitType
+  declarationTransformer,
+  deepkitType,
+  transformer
 };
 //# sourceMappingURL=mod.mjs.map

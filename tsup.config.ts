@@ -3,6 +3,7 @@ import { defineConfig } from "tsup";
 export default defineConfig({
   entry: ["./mod.mts"],
   outDir: "bundle",
+  "dts": true,
   "external": ["typescript"],
   "skipNodeModulesBundle": true,
   splitting: false,

@@ -5,9 +5,9 @@
   "type": "module",
   "exports": {
     ".": {
-      "import": "./dist/mod.mjs",
-      "types": "./dist/mod.d.ts",
-      "require": "./dist/mod.cjs"
+      "import": "./bundle/mod.mjs",
+      "types": "./bundle/mod.d.ts",
+      "require": "./bundle/mod.cjs"
     }
   },
   "scripts": {
