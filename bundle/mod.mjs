@@ -221,13 +221,8 @@ var TypeNumberBrand = /* @__PURE__ */ ((TypeNumberBrand2) => {
 })(TypeNumberBrand || {});
 
 // type-compiler/src/resolver.ts
-import * as ts2 from "typescript";
-var {
-  createSourceFile,
-  resolveModuleName,
-  SyntaxKind: SyntaxKind2,
-  ScriptTarget
-} = ts2;
+import ts2 from "typescript";
+var { createSourceFile, resolveModuleName, SyntaxKind: SyntaxKind2, ScriptTarget } = ts2;
 var Resolver = class {
   constructor(compilerOptions, host) {
     this.compilerOptions = compilerOptions;

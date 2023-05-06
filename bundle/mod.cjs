@@ -36,10 +36,10 @@ __export(mod_exports, {
 });
 module.exports = __toCommonJS(mod_exports);
 var import_pluginutils = require("@rollup/pluginutils");
-var import_typescript3 = __toESM(require("typescript"), 1);
+var import_typescript4 = __toESM(require("typescript"), 1);
 
 // type-compiler/src/compiler.ts
-var import_typescript2 = __toESM(require("typescript"), 1);
+var import_typescript3 = __toESM(require("typescript"), 1);
 
 // type-compiler/src/reflection-ast.ts
 var import_typescript = __toESM(require("typescript"), 1);
@@ -257,13 +257,8 @@ var TypeNumberBrand = /* @__PURE__ */ ((TypeNumberBrand2) => {
 })(TypeNumberBrand || {});
 
 // type-compiler/src/resolver.ts
-var ts2 = __toESM(require("typescript"), 1);
-var {
-  createSourceFile,
-  resolveModuleName,
-  SyntaxKind: SyntaxKind2,
-  ScriptTarget
-} = ts2;
+var import_typescript2 = __toESM(require("typescript"), 1);
+var { createSourceFile, resolveModuleName, SyntaxKind: SyntaxKind2, ScriptTarget } = import_typescript2.default;
 var Resolver = class {
   constructor(compilerOptions, host) {
     this.compilerOptions = compilerOptions;
@@ -311,7 +306,7 @@ var Resolver = class {
     if (!source)
       return;
     const sourceFile = this.sourceFiles[fileName] = createSourceFile(fileName, source, this.compilerOptions.target || ScriptTarget.ES2018, true);
-    ts2.bindSourceFile(sourceFile, this.compilerOptions);
+    import_typescript2.default.bindSourceFile(sourceFile, this.compilerOptions);
     return sourceFile;
   }
 };
@@ -379,7 +374,7 @@ var {
   ScriptTarget: ScriptTarget2,
   ModifierFlags,
   ScriptKind
-} = import_typescript2.default;
+} = import_typescript3.default;
 function encodeOps(ops) {
   return ops.map((v) => String.fromCharCode(v + 33)).join("");
 }
@@ -700,12 +695,12 @@ var ReflectionTransformer = class {
         }
       };
     }
-    const configFile = import_typescript2.default.readConfigFile(path, (path2) => this.host.readFile(path2));
+    const configFile = import_typescript3.default.readConfigFile(path, (path2) => this.host.readFile(path2));
     if (configFile.error) {
       debug(`Failed to read tsconfig ${path}: ${configFile.error.messageText}`);
       return;
     }
-    const parsed = import_typescript2.default.parseJsonConfigFileContent(configFile.config, this.parseConfigHost, (0, import_node_path.dirname)(path));
+    const parsed = import_typescript3.default.parseJsonConfigFileContent(configFile.config, this.parseConfigHost, (0, import_node_path.dirname)(path));
     if (parsed.errors.length) {
       debug(`Failed to parse tsconfig ${path}: ${parsed.errors.map((v) => v.messageText).join(", ")}`);
       return;
@@ -727,7 +722,7 @@ var ReflectionTransformer = class {
         this.compilerOptions = Object.assign(this.config.compilerOptions, this.compilerOptions);
       }
     } else {
-      const configPath = import_typescript2.default.findConfigFile((0, import_node_path.dirname)(sourceFile.fileName), (path) => this.host.fileExists(path));
+      const configPath = import_typescript3.default.findConfigFile((0, import_node_path.dirname)(sourceFile.fileName), (path) => this.host.fileExists(path));
       if (configPath) {
         const configFile = this.readTsConfig(configPath);
         if (configFile) {
@@ -752,7 +747,7 @@ var ReflectionTransformer = class {
         this.reflectionOptions = this.parseReflectionOptionsDefaults(currentConfig.reflectionOptions);
       while ((this.reflectionMode === void 0 || this.compilerOptions === void 0) && "string" === typeof basePath && currentConfig.extends) {
         const path = (0, import_node_path.join)(basePath, currentConfig.extends);
-        const nextConfig = import_typescript2.default.readConfigFile(path, (path2) => this.host.readFile(path2));
+        const nextConfig = import_typescript3.default.readConfigFile(path, (path2) => this.host.readFile(path2));
         if (!nextConfig)
           break;
         if (!this.reflectionMode && nextConfig.config.reflection !== void 0)
@@ -768,7 +763,7 @@ var ReflectionTransformer = class {
       return sourceFile;
     }
     if (!sourceFile.locals) {
-      import_typescript2.default.bindSourceFile(sourceFile, this.compilerOptions);
+      import_typescript3.default.bindSourceFile(sourceFile, this.compilerOptions);
     }
     if (sourceFile.kind !== SyntaxKind3.SourceFile) {
       throw new Error(`Invalid TypeScript library imported. SyntaxKind different ${sourceFile.kind} !== ${SyntaxKind3.SourceFile}. typescript package path: ${"todo..."}`);
@@ -905,13 +900,13 @@ var ReflectionTransformer = class {
                   this.f.createBinaryExpression(
                     this.f.createBinaryExpression(
                       r,
-                      this.f.createToken(import_typescript2.default.SyntaxKind.EqualsToken),
+                      this.f.createToken(import_typescript3.default.SyntaxKind.EqualsToken),
                       node.expression.expression
                     ),
-                    this.f.createToken(import_typescript2.default.SyntaxKind.CommaToken),
+                    this.f.createToken(import_typescript3.default.SyntaxKind.CommaToken),
                     assignQ2
                   ),
-                  this.f.createToken(import_typescript2.default.SyntaxKind.CommaToken),
+                  this.f.createToken(import_typescript3.default.SyntaxKind.CommaToken),
                   r
                 )),
                 node.expression.name
@@ -1107,7 +1102,7 @@ var ReflectionTransformer = class {
               void 0,
               void 0
             )],
-            import_typescript2.default.NodeFlags.None
+            import_typescript3.default.NodeFlags.None
           )
         )
       );
@@ -1138,7 +1133,7 @@ var ReflectionTransformer = class {
         container,
         this.f.createIdentifier("\u03A9")
       ),
-      this.f.createToken(import_typescript2.default.SyntaxKind.EqualsToken),
+      this.f.createToken(import_typescript3.default.SyntaxKind.EqualsToken),
       this.f.createIdentifier("undefined")
     ));
     const body = node.body ? this.f.updateBlock(node.body, [reset, ...node.body.statements]) : void 0;
@@ -1775,7 +1770,7 @@ var ReflectionTransformer = class {
     if (options.target && (options.target > ScriptTarget2.ES2021 && options.target < ScriptTarget2.ESNext)) {
       options.target = ScriptTarget2.ES2021;
     }
-    const libs = (0, import_vfs.knownLibFilesForCompilerOptions)(options, import_typescript2.default);
+    const libs = (0, import_vfs.knownLibFilesForCompilerOptions)(options, import_typescript3.default);
     for (const lib of libs) {
       const sourceFile = this.resolver.resolveSourceFile(this.sourceFile.fileName, "typescript/lib/" + lib.replace(".d.ts", ""));
       if (!sourceFile)
@@ -2613,10 +2608,10 @@ function deepkitType(options = {}) {
     transform(code, fileName) {
       if (!filter(fileName))
         return null;
-      const transformed = import_typescript3.default.transpileModule(code, {
+      const transformed = import_typescript4.default.transpileModule(code, {
         "compilerOptions": {
-          "target": import_typescript3.default.ScriptTarget.ESNext,
-          "module": import_typescript3.default.ModuleKind.ESNext
+          "target": import_typescript4.default.ScriptTarget.ESNext,
+          "module": import_typescript4.default.ModuleKind.ESNext
         },
         fileName,
         //@ts-ignore
